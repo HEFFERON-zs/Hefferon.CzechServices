@@ -6,6 +6,8 @@
     <Authors>Dalibor Vaněk</Authors>
     <Company>Hefferon z.s.</Company>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/HEFFERON-zs/Hefferon.CzechServices</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/HEFFERON-zs/Hefferon.CzechServices</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
