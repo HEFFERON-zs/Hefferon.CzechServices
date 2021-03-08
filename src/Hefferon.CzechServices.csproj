@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Dalibor Vaněk</Authors>
+    <Company>Hefferon z.s.</Company>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Test\**" />
+    <Compile Remove="Zasilkovna\**" />
+    <EmbeddedResource Remove="Test\**" />
+    <EmbeddedResource Remove="Zasilkovna\**" />
+    <None Remove="Test\**" />
+    <None Remove="Zasilkovna\**" />
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
