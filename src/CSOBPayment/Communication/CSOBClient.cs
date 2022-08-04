@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -43,6 +44,22 @@ namespace Hefferon.CzechServices.CsobPayment.Communication
 
             MerchantId = merchantId;
             pemKey = Crypto.DecodePemKey(File.ReadAllText(privateKeyFilePath));
+        }
+
+        public CSOBClient(string merchantId, SecureString privateKey)
+        {
+            if (string.IsNullOrWhiteSpace(merchantId))
+            {
+                throw new ArgumentException("message", nameof(merchantId));
+            }
+
+            if (privateKey == null)
+            {
+                throw new ArgumentException("message", nameof(privateKey));
+            }
+
+            MerchantId = merchantId;
+            pemKey = Crypto.DecodePemKey(privateKey.ToString());
         }
 
         public string MerchantId { get; }
@@ -288,7 +305,7 @@ namespace Hefferon.CzechServices.CsobPayment.Communication
                 HttpClient client = httpClient.Value;
 
                 using (var request = new HttpRequestMessage(HttpMethod.Post, url))
-                { 
+                {
                     request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     request.Content = content;
 
