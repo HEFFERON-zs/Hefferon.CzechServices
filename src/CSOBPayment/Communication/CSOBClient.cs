@@ -30,23 +30,7 @@ namespace Hefferon.CzechServices.CsobPayment.Communication
             return client;
         }
 
-        public CSOBClient(string merchantId, string privateKeyFilePath)
-        {
-            if (string.IsNullOrWhiteSpace(merchantId))
-            {
-                throw new ArgumentException("message", nameof(merchantId));
-            }
-
-            if (string.IsNullOrWhiteSpace(privateKeyFilePath))
-            {
-                throw new ArgumentException("message", nameof(privateKeyFilePath));
-            }
-
-            MerchantId = merchantId;
-            pemKey = Crypto.DecodePemKey(File.ReadAllText(privateKeyFilePath));
-        }
-
-        public CSOBClient(string merchantId, SecureString privateKey)
+        public CSOBClient(string merchantId, string privateKey)
         {
             if (string.IsNullOrWhiteSpace(merchantId))
             {
@@ -59,7 +43,7 @@ namespace Hefferon.CzechServices.CsobPayment.Communication
             }
 
             MerchantId = merchantId;
-            pemKey = Crypto.DecodePemKey(privateKey.ToString());
+            pemKey = Crypto.DecodePemKey(privateKey);
         }
 
         public string MerchantId { get; }
